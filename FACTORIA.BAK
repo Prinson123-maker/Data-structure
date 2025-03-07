@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<conio.h>
+int multiplyNumber(int n);
+void main()
+{
+ int n;
+ clrscr();
+ printf("enter positive number:");
+ scanf("%d",&n);
+ printf("the factorial of %d=%d",n,multiplyNumber(n));
+ getch();
+}
+int multiplyNumber(int n)
+{
+ if(n>=1)
+  return n*multiplyNumber(n-1);
+ else
+  return 1;
+}
