@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+ int f=0,s=1,i,n,sum=0;
+ clrscr();
+ printf("enter the number of terms:");
+ scanf("%d",&n);
+ printf("fibonacci series");
+ for(i=0;i<n;i++)
+ {
+  if(i<=1)
+  {
+   sum=i;
+  }
+  else
+  {
+   sum=f+s;
+   f=s;
+   s=sum;
+  }
+   printf("%d",sum);
+ }
+ getch():
+}
