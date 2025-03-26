@@ -24,7 +24,7 @@ void insertEnd(struct node** head,int data)
   }
   temp->next=new_node;
  }
- printf("\Nelement %d inserted at the end\n",data);
+ printf("\nelement %d inserted at the end\n",data);
 }
 void insertbeginning(struct node** head,int data)
 {
@@ -62,6 +62,70 @@ void insertbeginning(struct node** head,int data)
   temp->next=new_node;
   printf("element %d inserted at position %d\n",data,position);
  }
+}
+void deleteBeginning(struct node** head)
+{
+  if(*head==NULL)
+  {
+    printf("list is empty,no need to delete.\n");
+    return;
+  }
+  struct node* temp=*head;
+  *head=(*head)->next;
+  printf("element %d deleted from the begining.\n",temp->data);
+  free(temp);
+}
+void deleteEnd(struct node** head)
+{
+  if(*head==NULL)
+  {
+   printf("list is empty,no need to delete.\n"):
+   return;
+  }
+ struct node* temp=*head;
+ if(temp->next==NULL)
+ {
+   printf("element %d deleted from the end.\n",temp->data);
+   free(temp);
+   *head=NULL;
+   return;
+ }
+ while(temp->next!=NULL&&temp->next->next!=NULL)
+ {
+  temp=temp->next;
+ }
+ printf("element %d deleted from the end.\n",temp->next->data);
+ free(temp->next);
+ temp->next=NULL;
+}
+void deleteAtPosition(struct node** head,int position)
+{
+  if(*head==NULL)
+  {
+   printf("list is empty,no node to delete\n");
+   return;
+  }
+  struct node* temp=*head;
+  if(position==1)
+  {
+   *head=temp->next;
+   printf("element %d deleted from position %D\n",temp->data,position);
+   free(temp);
+   return;
+  }
+  for(int i=1;temp!=NULL&&i<position-1;i++)
+  {
+    temp=temp->next;
+  }
+  if(temp==NULL||temp->next==NULL)
+  {
+   printf("POSITION OUT OF RANGE");
+   return;
+  }
+  struct node* next=temp->next->next;
+  printf("element %d deleted from position %d\n",temp->next->data,position);
+  free(temp->next);
+  temp->next=next;
 }
 void display(struct node* head)
 {
@@ -107,6 +171,7 @@ void main()
       printf("\nenter an elemnt at the beginning:\n");
       scanf("%d",&value);
       insertbeginning(&head,value);
+      break;
     case 3:
       printf("enter an elemnt to insert at specified position:\n");
       scanf("%d",&value);
@@ -114,9 +179,20 @@ void main()
       scanf("%d",&pos);
       insertAtPosition(&head,value,pos);
       break;
-   case 7:
+    case 4:
+     deleteBeginning(&head);
+     break;
+    case 5:
+     deleteEnd(&head);
+     break;
+    case 6:
+      printf("enter the position to delete");
+      scanf("%d",&pos);
+      deleteAtPosition(&head,pos);
+    case 7:
      printf("linked list\n");
      display(head);
+     break;
    case 8:
      printf("exiting the program\n");
      break;
